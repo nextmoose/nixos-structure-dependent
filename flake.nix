@@ -21,7 +21,7 @@
 			      cd $( ${ pkgs.mktemp }/bin/mktemp --directory ${ nixos-structure-utils.dollar "WORK_DIR" }/XXXXXXXX )
 		          } &&
 			trap CLEANUP exit
-		    ''
+		    '' ;
             }
       ) ;
 }
