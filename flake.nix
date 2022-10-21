@@ -24,7 +24,7 @@
 			        } &&
 				cd $( ${ pkgs.mktemp }/bin/mktemp --directory ${ nixos-structure-utils.dollar "WORK_DIR" }/XXXXXXXX ) &&
 		                ${ pkgs.coreutils }/bin/true
-		    	    ''
+		    	    '' ;
 			}
 	          }
             }
