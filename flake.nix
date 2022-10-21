@@ -10,12 +10,23 @@
             in
             {
               lib =
-		  pkgs.writeShellScriptBin
-		    "bin"
-		    ''
-		      WORK_DIR=$( ${ pkgs.mktemp } --directory ) &&
-		        ${ pkgs.coreutils }/bin/true
-		    '' ;
+	        script :
+		  {
+		    devShell =
+		      pkgs.mkShell
+		        {
+			  shellHook =
+			    ''
+			      WORK_DIR=$( ${ pkgs.mktemp } --directory ) &&
+			        cleanup ( ) {
+				  ${ pkgs.findutils }/bin/find ${ nixos-structure-utils.dollar "WORK_DIR" } -type f -exec ${ pkgs.coreutils }/bin/shred --force --remove=wipesync {} \; &&
+				    ${ pkgs.coreutils }/bin/rm --recursive --force ${ nixos-structure-utils.dollar "WORK_DIR" }
+			        } &&
+				cd $( ${ pkgs.mktemp }/bin/mktemp --directory ${ nixos-structure-utils.dollar "WORK_DIR" }/XXXXXXXX ) &&
+		                ${ pkgs.coreutils }/bin/true
+		    	    ''
+			}
+	          }
             }
       ) ;
 }
