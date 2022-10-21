@@ -10,7 +10,7 @@
             in
 	      script :
                 {
-                  lib
+                  lib :
 		    {
 		      devShell =
 		        pkgs.mkShell
