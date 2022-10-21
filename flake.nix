@@ -1,5 +1,5 @@
 {
-  inputs = { nixpkgs.url = "github:nixos/nixpkgs" ; flake-utils.url = "github:numtide/flake-utils" ; nixos-structure-utils.url = "github:nextmoose/nixos-structure-utils } ;
+  inputs = { nixpkgs.url = "github:nixos/nixpkgs" ; flake-utils.url = "github:numtide/flake-utils" ; nixos-structure-utils.url = "github:nextmoose/nixos-structure-utils" ; } ;
   outputs =
     { self , nixpkgs , flake-utils , nixos-structure-utils } :
       flake-utils.lib.eachDefaultSystem
@@ -21,7 +21,7 @@
 			      cd $( ${ pkgs.mktemp }/bin/mktemp --directory ${ nixos-structure-utils.dollar "WORK_DIR" }/XXXXXXXX )
 		          } &&
 			trap CLEANUP exit
-		    ''
+		    '' ;
             }
       ) ;
 }
