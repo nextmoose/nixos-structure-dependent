@@ -8,26 +8,26 @@
           let
             pkgs = builtins.getAttr system nixpkgs.legacyPackages ;
             in
-            {
-              lib =
-	        script :
-		  {
-		    devShell =
-		      pkgs.mkShell
-		        {
-			  shellHook =
-			    ''
-			      WORK_DIR=$( ${ pkgs.mktemp } --directory ) &&
-			        cleanup ( ) {
-				  ${ pkgs.findutils }/bin/find ${ nixos-structure-utils.dollar "WORK_DIR" } -type f -exec ${ pkgs.coreutils }/bin/shred --force --remove=wipesync {} \; &&
-				    ${ pkgs.coreutils }/bin/rm --recursive --force ${ nixos-structure-utils.dollar "WORK_DIR" }
-			        } &&
-				${ script } &&
-				cd $( ${ pkgs.mktemp }/bin/mktemp --directory ${ nixos-structure-utils.dollar "WORK_DIR" }/XXXXXXXX ) &&
-		                ${ pkgs.coreutils }/bin/true
-		    	    '' ;
-			}
-	          } ;
-            }
+	      script :
+                {
+                  lib
+		    {
+		      devShell =
+		        pkgs.mkShell
+		          {
+			    shellHook =
+			      ''
+			        WORK_DIR=$( ${ pkgs.mktemp } --directory ) &&
+			          cleanup ( ) {
+				    ${ pkgs.findutils }/bin/find ${ nixos-structure-utils.dollar "WORK_DIR" } -type f -exec ${ pkgs.coreutils }/bin/shred --force --remove=wipesync {} \; &&
+				      ${ pkgs.coreutils }/bin/rm --recursive --force ${ nixos-structure-utils.dollar "WORK_DIR" }
+			          } &&
+				  ${ script } &&
+				  cd $( ${ pkgs.mktemp }/bin/mktemp --directory ${ nixos-structure-utils.dollar "WORK_DIR" }/XXXXXXXX ) &&
+		                  ${ pkgs.coreutils }/bin/true
+		    	      '' ;
+			  }
+	               }
+                    }
       ) ;
 }
