@@ -6,7 +6,10 @@
       (
         system :
 	  {
-	    lib = "FOUND ME" ;
+	    lib =
+	      {
+	        message = "FOUND ME" ;
+	      } ;
 	  }
       ) ;
 }
