@@ -19,8 +19,8 @@
 			      ''
 			        ${ builtins.toString script }
 		    	      '' ;
-			  }
-	               }
-                    }
+			  } ;
+                    } ;
+		 }
       ) ;
 }
