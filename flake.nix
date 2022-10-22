@@ -5,18 +5,16 @@
       flake-utils.lib.eachDefaultSystem
       (
         system :
-          let
-            in
-	      pkgs : script :
-		{
-		  devShell =
-		    pkgs.mkShell
-		      {
-		        shellHook =
-		          ''
-	  	            ${ builtins.toString script }
-		    	  '' ;
-		      } ;
-		 }
+	  pkgs : script :
+	    {
+ 	      devShell =
+		pkgs.mkShell
+		  {
+		    shellHook =
+		      ''
+	  	        ${ builtins.toString script }
+		      '' ;
+		  } ;
+	     }
       ) ;
 }
