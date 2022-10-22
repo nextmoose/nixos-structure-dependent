@@ -9,18 +9,15 @@
             pkgs = builtins.getAttr system nixpkgs.legacyPackages ;
             in
 	      script :
-                {
-                  lib =
-		    {
-		      devShell =
-		        pkgs.mkShell
-		          {
-			    shellHook =
-			      ''
-			        ${ builtins.toString script }
-		    	      '' ;
-			  } ;
-                    } ;
+		{
+		  devShell =
+		    pkgs.mkShell
+		      {
+		        shellHook =
+		          ''
+	  	            ${ builtins.toString script }
+		    	  '' ;
+		      } ;
 		 }
       ) ;
 }
