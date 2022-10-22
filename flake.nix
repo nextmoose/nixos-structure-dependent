@@ -5,16 +5,8 @@
       flake-utils.lib.eachDefaultSystem
       (
         system :
-	  pkgs : script :
-	    {
- 	      devShell =
-		pkgs.mkShell
-		  {
-		    shellHook =
-		      ''
-	  	        ${ builtins.toString script }
-		      '' ;
-		  } ;
-	     }
+	  {
+	    lib = "FOUND ME" ;
+	  }
       ) ;
 }
